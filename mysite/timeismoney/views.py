@@ -35,6 +35,10 @@ def home(request):
 	context = {}
 	context['meetings'] = Meeting.objects.all()
 
+	#Get the current user's name 
+	context['first_name'] = request.user.first_name
+	context['last_name'] = request.user.last_name
+
 	return render(request, 'timeismoney/index.html', context)
 
 @transaction.atomic
