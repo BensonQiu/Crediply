@@ -37,6 +37,7 @@ def createMeeting(request):
 @login_required
 def checkIn(request):
 	context = {}
+	context['meetings'] = Meeting.objects.all()
 
 	return render(request, 'timeismoney/checkIn.html', context)
 
