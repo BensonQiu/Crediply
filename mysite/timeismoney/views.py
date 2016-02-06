@@ -61,6 +61,16 @@ def parseDate(daterange):
 	return (startDateTime, endDateTime)
 
 @login_required
+def attend(request, id):
+	username = request.user.username
+	meeting = Meeting.objects.filter(id=id)[0]
+	meeting.pendingAttendees.remove(request.user)
+	meeting.acceptedAttendees.add(request.user)
+	meeting.save()
+
+	return redirect(reverse('home'))
+
+@login_required
 def createMeeting(request):
 	context = {}
 

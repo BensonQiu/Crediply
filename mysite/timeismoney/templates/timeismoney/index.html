@@ -175,7 +175,7 @@
                                 <div class="alert alert-block alert-info">
                                     <div>
                                         <strong>{{ meeting.meetingName }}</strong>
-                                        <button type="button" class="btn btn-success attend">Attend</button>
+                                        <a href="{% url 'attend' meeting.id %}" style="float: right;" class="btn btn-success attend">Attend</a>
                                     </div>
                                     <p class="description-sm">{{ meeting.location }}<br>{{ meeting.startDT }}</p>
                                     <button type="button" class="close close-sm" data-toggle="collapse" data-target="#pending{{count}}">
@@ -185,9 +185,13 @@
                                     <div id="pending{{count}}" class="collapse">
                                         <h3>Attendees:</h3>
                                         <ol id="attendees">
-                                            {% for pa in meeting.pendingAttendees.all %}
-                                            <li>{{ pa.username }} <span class="icon glyphicon glyphicon-ok"></span></li>
+                                            {% for aa in meeting.acceptedAttendees.all %}
+                                            <li>{{ aa.username }} <span class="icon glyphicon glyphicon-ok"></span></li>
                                             {% endfor %}
+                                            {% for pa in meeting.pendingAttendees.all %}
+                                            <li>{{ pa.username }} <span class="icon glyphicon glyphicon-remove"></span></li>
+                                            {% endfor %}
+
                                         </ol>
                                     </div>
                                 </div>
@@ -226,7 +230,7 @@
                       <!-- Modal -->
                       <div class="modal fade" id="myModal" role="dialog">
                         <div class="modal-dialog">
-                        
+
                           <!-- Modal content-->
                           <div class="modal-content">
                             <div class="modal-header">
@@ -259,7 +263,7 @@
                               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                             </div>
                           </div>
-                          
+
                         </div>
                       </div>
 

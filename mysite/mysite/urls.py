@@ -3,6 +3,7 @@ from django.contrib import admin
 
 urlpatterns = [
    	url(r'^$', 'timeismoney.views.home', name='home'),
+   	url(r'^attend(?P<id>[0-9_-]+)$', 'timeismoney.views.attend', name='attend'),
     url(r'^createMeeting$', 'timeismoney.views.createMeeting', name='createMeeting'),
     url(r'^checkIn$', 'timeismoney.views.checkIn', name='checkIn'),
     url(r'^getData$', 'timeismoney.views.getData'),
