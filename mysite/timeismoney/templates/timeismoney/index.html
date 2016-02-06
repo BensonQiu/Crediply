@@ -101,7 +101,7 @@
                             <!-- Sidebar user panel -->
                             <div class="user-panel">
                                 <div class="pull-left image">
-                                    <img src="img/26115.jpg" class="img-circle" alt="User Image" />
+                                    <img src=src="{% static 'timeismoney/img/dog.jpg' %}" class="img-circle" alt="User Image" />
                                 </div>
                                 <div class="pull-left info">
                                     <p>Hello, {{first_name}}</p>
@@ -378,10 +378,7 @@
                 type: 'GET',
                 dataType: "json",
                 async: false}).done(function(response) {
-                    console.log(response);
-                    console.log(response.testdata);
                     response.usernames.forEach(function(username) {
-                        console.log(username);
                         usernames.push({id: username, text: username})
                     })
                 })
