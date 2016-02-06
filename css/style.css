@@ -4206,3 +4206,9 @@ padding: 6px 10px;
 .st-blue {
   background-color: #23b7e5;
 }
+
+/* Calendar styles */
+#calendar {
+  max-width: 900px;
+  margin: 0 auto;
+}
