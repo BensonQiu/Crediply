@@ -119,11 +119,13 @@ def checkIn(request):
     context = {}
 
     curMeeting = withinStart()
-
+    
     context = {
         'first_name': request.user.first_name,
         'last_name': request.user.last_name,
         'curMeeting': curMeeting.meetingName,
+        'curMeetingLoc': curMeeting.location,
+        'curMeetingTime': curMeeting.startDT
     }
 
     if request.method == 'GET':
@@ -261,42 +263,30 @@ def halfKilometerDifference(origin, destination):
     km = 6367 * c
 
     return (km < 0.500)
-	# If this is a GET request, display the registration form.
-	if request.method == 'GET':
-		return render(request, 'timeismoney/register.html', {})
 
-	# TODO: Create a form to validate input
-	form = request.POST
-	# TODO: Do form validation here.
+def withinStart():
+    for meeting in Meeting.objects.all():
+        startDT = meeting.startDT
+        startYear = int(startDT[0:4])
+        startMonth = int(startDT[5].strip('0') + startDT[6])
+        startDay = int(startDT[8].strip('0') + startDT[9])
+        startHour = int(startDT[10].strip('0') + startDT[11])
+        startMinute = int(startDT[13].strip('0') + startDT[14])
 
-	newUser = User.objects.create_user(
-		username=form['username'],
-		password=form['password1'],
-		first_name=form['first_name'],
-		last_name=form['last_name'],
-		email=form['email'], # This is actually CapitalOne Account ID.
-		                     # If this wasn't a hackathon we should probably
-		                     # just extend User to add additional fields
-	)
+        convertedStartDT = datetime.datetime(year=startYear, 
+                                             month=startMonth, 
+                                             day=startDay, 
+                                             hour=startHour, 
+                                             minute=startMinute)
+        lowerDT = convertedStartDT - datetime.timedelta(minutes=20)
+        upperDT = convertedStartDT + datetime.timedelta(minutes=20)
+        convertedCurrDT = datetime.datetime.now()
 
-	return render(request, 'timeismoney/login.html', {})
+        print('Looking at now {meetingName}'.format(meetingName=meeting.meetingName))
+        print('Looking at now {meetingName}'.format(meetingName=meeting.meetingName))
 
-def withinStart(startDT):
-	startYear = int(startDT[0:4])
-	startMonth = int(startDT[5].strip('0') + startDT[6])
-	startDay = int(startDT[8].strip('0') + startDT[9])
-	startHour = int(startDT[10].strip('0') + startDT[11])
-	startMinute = int(startDT[13].strip('0') + startDT[14])
+        if (convertedCurrDT > lowerDT) and (convertedCurrDT < upperDT):
+            print("YEAHHH!")
+            return meeting
 
-	gmt = pytz.timezone('GMT')
-	eastern = pytz.timezone('US/Eastern')
-	dategmt = gmt.localize(datetime.datetime.now() - timedelta(mins=30))
-	currDT = dategmt.astimezone(eastern)
-	currYear = currDT.year
-	currMonth = currDT.month
-	currDay = currDT.day
-	currHour = currDT.time().hour
-	currMinute = currDT.time().minute
-
-	return currYear >= startYear and currMonth >= startMonth and currDay >= startDay and \
-	       currHour >= startHour and currMinute >= startHour
+    return None
