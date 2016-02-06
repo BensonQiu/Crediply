@@ -63,3 +63,5 @@ target/
 
 # Python virtual environment
 venv/
+
+mysite/db.sqlite3
