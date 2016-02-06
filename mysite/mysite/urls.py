@@ -15,7 +15,7 @@ urlpatterns = [
     url(r'^attend(?P<id>[0-9_-]+)$', 'timeismoney.views.attend', name='attend'),
     url(r'^createMeeting$', 'timeismoney.views.createMeeting', name='createMeeting'),
     url(r'^checkIn$', 'timeismoney.views.checkIn', name='checkIn'),
-    url(r'^summary$', 'timeismoney.views.summary', name='summary'),
+    url(r'^summary(?P<meetingName>.*)$', 'timeismoney.views.summary', name='summary'),
     url(r'^getData$', 'timeismoney.views.getData'),
     url(r'^getUsernames$', 'timeismoney.views.getUsernames'),
     url(r'^login$', 'django.contrib.auth.views.login', {'template_name':'timeismoney/login.html'}, name='login'),
@@ -94,4 +94,4 @@ def checkLateAttendees(x=1):
 t = threading.Thread(target=checkLateAttendees,
                      kwargs={'x': 5})
 t.setDaemon(True)
-t.start()
+# t.start()

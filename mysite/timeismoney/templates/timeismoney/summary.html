@@ -57,7 +57,7 @@
                                 <i class="fa fa-envelope"></i>
                                 <span class="label label-success">4</span>
                             </a>
-                         
+
                         </li>
                         <!-- User Account: style can be found in dropdown.less -->
                         <li class="dropdown user user-menu">
@@ -99,7 +99,7 @@
                                     </a>
                                 </li>
 
-                                <li class="active">    
+                                <li class="active">
                                     <a href="{% url 'checkIn' %}">
                                         <i class="fa fa-globe"></i> <span>Check In</span>
                                     </a>
@@ -125,7 +125,7 @@
 		                    <circle cx="50" cy="50" r="30" fill="#d6f1ff" stroke="#2b74ba" stroke-width="8px"></circle>
 		                    <line x1="50" y1="50" x2="50" y2="30" stroke="#000" stroke-width="5" stroke-linecap="round">
 		                    	<animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="5s" repeatCount="indefinite">
-		                    	
+
 		                    	</animateTransform>
 		                    </line>
 		                    <line x1="50" y1="50" x2="50" y2="20" stroke="#f00" stroke-width="2px" stroke-linecap="round" opacity="0">
@@ -205,10 +205,10 @@
 
         <script type="text/javascript">
         	$(function() {
-                var late = true; //TODO EDIT THIS VARIABLE WITH ACTUAL DATA
+                var late = {{isLate}}; //TODO EDIT THIS VARIABLE WITH ACTUAL DATA
                 showText(late);
                 // var myVar = setTimeout(showIncentive(late, 5), 10000);
-                
+
 
         		function showText(isLate) {
                     if(isLate) {
@@ -230,7 +230,7 @@
                     if(isLate) {
                         msg = 'Too bad, you have lost';
                         color = 'red';
-                    } 
+                    }
                     $("<p class='msg'>" + msg + "</p>").appendTo(".count");
                     $("<p class='number'>$" + incentive + "</p>").appendTo(".count");
                     $(".number").css("color", color);

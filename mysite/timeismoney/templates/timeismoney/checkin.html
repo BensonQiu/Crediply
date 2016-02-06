@@ -237,18 +237,18 @@
             function getLocation() {
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(showPosition);
-                } else { 
+                } else {
                     latlngForm.innerHTML = "Geolocation is not supported by this browser.";
                 }
             }
 
             function showPosition(position) {
-                lat.value = position.coords.latitude;  
+                lat.value = position.coords.latitude;
                 lng.value = position.coords.longitude;
 
                 // submit the form
                 // document.getElementById('checkin-latlng').submit();
-                window.location.href = "{% url 'summary' %}";
+                window.location.href = "{% url 'summary' curMeeting %}";
             }
 
         </script>
