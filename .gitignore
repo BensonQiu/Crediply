@@ -65,3 +65,4 @@ target/
 venv/
 
 mysite/db.sqlite3
+mysite/timeismoney/migrations
