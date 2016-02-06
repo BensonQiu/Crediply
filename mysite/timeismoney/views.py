@@ -24,9 +24,13 @@ def createMeeting(request):
 		meetingName=form['meetingName'],
 		dateAndTime=datetime.datetime.utcnow(), # TODO: Get date and time from form.
 		location=form['location'],
-		attendees=form['attendees'],
 	)
 	newMeeting.save()
+
+	for attendee in form.getlist('attendees'):
+		user = User.objects.filter(username=attendee)[0]
+		newMeeting.pendingAttendees.add(user)
+		newMeeting.save()
 
 	return redirect(reverse('home'))
 
@@ -50,10 +54,21 @@ def getData(request):
 	context = {
 		'success': True,
 		'meetings': meetings_response,
-		'testdata': 'bensonwashere'
+		'testdata': 'bensonwashere',
 	}
 	return JsonResponse(context)
 
+@login_required
+def getUsernames(request):
+	users = list(User.objects.all())
+	usernames = [user.username for user in users]
+
+	context = {
+		'success': True,
+		'usernames': usernames,
+		'testdata': 'bqiuwashere',
+	}
+	return JsonResponse(context)
 @login_required
 def home(request):
 	context = {}

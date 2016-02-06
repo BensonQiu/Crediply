@@ -7,5 +7,9 @@ class Meeting(models.Model):
 	meetingName = models.CharField(max_length=100)
 	dateAndTime = models.DateTimeField()
 	location = models.CharField(max_length=100)
-	attendees = models.CharField(max_length=200)
-	# acceptStatus = models.BooleanField()
+	pendingAttendees = models.ManyToManyField(User, related_name='%(class)s_pending')
+	acceptedAttendees = models.ManyToManyField(User, related_name='%(class)s_accepted')
+
+	def natural_key(self):
+		return (self.pendingAttendees, self.acceptedAttendees)
+
