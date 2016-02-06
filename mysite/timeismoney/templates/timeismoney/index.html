@@ -170,26 +170,31 @@
                             </header>
                             <div class="panel-body" id="noti-box">
 
+                                {% for meeting in pendingMeetings %}
+                                {% with count=forloop.counter %}
                                 <div class="alert alert-block alert-info">
                                     <div>
-                                        <strong>Meeting with Rowe</strong>
+                                        <strong>{{ meeting.meetingName }}</strong>
                                         <button type="button" class="btn btn-success attend">Attend</button>
                                     </div>
-                                    <p class="description-sm">GHC 4401<br>5:00pm on Feb 6, 2016</p>
-                                    <button type="button" class="close close-sm" data-toggle="collapse" data-target="#pending1">
+                                    <p class="description-sm">{{ meeting.location }}<br>{{ meeting.startDT }}</p>
+                                    <button type="button" class="close close-sm" data-toggle="collapse" data-target="#pending{{count}}">
                                         <i class="fa fa-chevron-down"></i>
                                     </button>
 
-                                    <div id="pending1" class="collapse">
+                                    <div id="pending{{count}}" class="collapse">
                                         <h3>Attendees:</h3>
                                         <ol id="attendees">
-                                            <li>Pratik Prakash <span class="icon glyphicon glyphicon-ok"></span></li>
-                                            <li>Pratik Prakash <span class="icon glyphicon glyphicon-ok"></span></li>
-                                            <li>Omer Elhiraika <span class="icon glyphicon glyphicon-remove"></span></li>
+                                            {% for pa in meeting.pendingAttendees.all %}
+                                            <li>{{ pa.username }} <span class="icon glyphicon glyphicon-ok"></span></li>
+                                            {% endfor %}
                                         </ol>
                                     </div>
                                 </div>
+                                {% endwith %}
+                                {% endfor %}
                             </div>
+
                         </section>
                         <!-- Pending meeting end-->
 

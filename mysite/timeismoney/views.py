@@ -39,7 +39,6 @@ def parseDate(daterange):
 	if endAMPM == 'PM':
 		endHour = str(int(endHour)+12)
 
-
 	startDateTime = ("{startDateYear}-{startDateMonth}-{startDateDay}"
                      "{startHour}T{startMinute}"
 		            ).format(
@@ -60,8 +59,6 @@ def parseDate(daterange):
 		            	endMinute=endMinute,
 		            )
 	return (startDateTime, endDateTime)
-
-#	u'02/06/2016 12:00 AM - 02/06/2016 11:59 PM'
 
 @login_required
 def createMeeting(request):
@@ -128,14 +125,22 @@ def getUsernames(request):
 		'testdata': 'bqiuwashere',
 	}
 	return JsonResponse(context)
+
 @login_required
 def home(request):
-	context = {}
-	context['meetings'] = Meeting.objects.all()
-
-	#Get the current user's name
-	context['first_name'] = request.user.first_name
-	context['last_name'] = request.user.last_name
+	meetings = Meeting.objects.all()
+	acceptedMeetings = filter(
+		lambda meeting: not meeting.pendingAttendees.values_list(), meetings
+	)
+	pendingMeetings = filter(
+		lambda meeting: meeting.pendingAttendees.values_list(), meetings
+	)
+	context = {
+		'acceptedMeetings': acceptedMeetings,
+		'pendingMeetings': pendingMeetings,
+		'first_name': request.user.first_name,
+		'last_name': request.user.last_name,
+	}
 
 	return render(request, 'timeismoney/index.html', context)
 
