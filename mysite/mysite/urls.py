@@ -1,5 +1,7 @@
 import datetime
+import json
 import pytz
+import requests
 import threading
 import time
 
@@ -41,8 +43,33 @@ def hasStarted(startDT):
     return currYear >= startYear and currMonth >= startMonth and currDay >= startDay and \
            ((currHour > startHour) or (currHour == startHour and currMinute >= startMinute))
 
+def transfer_balance(payer_id='56241a14de4bf40b17112ece',
+        payee_id='56241a14de4bf40b17112ece', amount=1,
+        api_key='9796d298ca02479fd5b384a8afe6d20e'):
+    base_url = 'http://api.reimaginebanking.com/accounts/{_id}/transfers?key={api_key}'
+    url = base_url.format(
+        _id=payer_id,
+        api_key=api_key,
+    )
+    headers = {'content-type': 'application/json'}
+    payload = {
+        'medium': 'balance',
+        'payee_id': payee_id,
+        'amount': amount,
+        'status': 'pending',
+        'description': 'A transfer balance for being late to a meeting',
+    }
+    payload = json.dumps(payload)
+    response = requests.post(url, data=payload, headers=headers)
+
+    # print 'Made a transfer balance with response={response}'.format(response=response)
+    # print response.text
+    print 'Made a payment of ${amount}'.format(amount=amount)
+
+
 def checkLateAttendees(x=1):
     while True:
+        transfer_balance()
         x += 1
         print("Counter:{x}".format(x=x))
         for meeting in Meeting.objects.all():
@@ -67,4 +94,4 @@ def checkLateAttendees(x=1):
 t = threading.Thread(target=checkLateAttendees,
                      kwargs={'x': 5})
 t.setDaemon(True)
-# t.start()
+t.start()
