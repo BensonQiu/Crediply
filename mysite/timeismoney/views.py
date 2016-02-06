@@ -115,8 +115,7 @@ def getData(request):
 			'endDT': meeting.endDT,
 			'location': meeting.location,
 		}
-		for meeting in meetings]
-
+		for meeting in meetings if not meeting.pendingAttendees.values()]
 	context = {
 		'success': True,
 		'meetings': meetings_response,
