@@ -90,6 +90,9 @@ def createMeeting(request):
 		location=form['location'],
 	)
 	newMeeting.save()
+	# Meeting creator is automatically attending
+	newMeeting.acceptedAttendees.add(request.user)
+	newMeeting.save()
 
 	for attendee in form.getlist('attendees'):
 		user = User.objects.filter(username=attendee)[0]
@@ -115,7 +118,10 @@ def getData(request):
 			'endDT': meeting.endDT,
 			'location': meeting.location,
 		}
-		for meeting in meetings if not meeting.pendingAttendees.values()]
+		for meeting in meetings
+		if not meeting.pendingAttendees.values()
+		and request.user in meeting.acceptedAttendees.all()]
+
 	context = {
 		'success': True,
 		'meetings': meetings_response,
@@ -126,7 +132,8 @@ def getData(request):
 @login_required
 def getUsernames(request):
 	users = list(User.objects.all())
-	usernames = [user.username for user in users]
+	# Get all usernames except the current user's username
+	usernames = [user.username for user in users if user != request.user]
 
 	context = {
 		'success': True,
