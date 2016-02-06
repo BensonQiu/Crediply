@@ -113,7 +113,6 @@ def createMeeting(request):
 
     return redirect(reverse('home'))
 
-
 @login_required
 def checkIn(request):
     context = {}
@@ -231,10 +230,10 @@ def withinStart():
         startHour = int(startDT[10].strip('0') + startDT[11])
         startMinute = int(startDT[13].strip('0') + startDT[14])
 
-        convertedStartDT = datetime.datetime(year=startYear, 
-                                             month=startMonth, 
-                                             day=startDay, 
-                                             hour=startHour, 
+        convertedStartDT = datetime.datetime(year=startYear,
+                                             month=startMonth,
+                                             day=startDay,
+                                             hour=startHour,
                                              minute=startMinute)
         lowerDT = convertedStartDT - datetime.timedelta(minutes=20)
         upperDT = convertedStartDT + datetime.timedelta(minutes=20)
@@ -253,13 +252,13 @@ def halfKilometerDifference(origin, destination):
     lat1, lon1 = origin
     lat2, lon2 = destination
 
-    # convert decimal degrees to radians 
+    # convert decimal degrees to radians
     lon1, lat1, lon2, lat2 = map(radians, [lon1, lat1, lon2, lat2])
-    # haversine formula 
-    dlon = lon2 - lon1 
-    dlat = lat2 - lat1 
+    # haversine formula
+    dlon = lon2 - lon1
+    dlat = lat2 - lat1
     a = sin(dlat/2)**2 + cos(lat1) * cos(lat2) * sin(dlon/2)**2
-    c = 2 * asin(sqrt(a)) 
+    c = 2 * asin(sqrt(a))
     km = 6367 * c
 
     return (km < 0.500)

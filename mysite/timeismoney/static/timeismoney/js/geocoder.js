@@ -16,8 +16,8 @@ function geocodeAddress() {
   var attendeesList = document.querySelector('select').selectedOptions;
   var attendees = []
   for(i = 0; i < attendeesList.length; i++) {
-      console.log(attendeesList[0].value);
-      attendees.push(attendeesList[0].value);
+      console.log(attendeesList[i].value);
+      attendees.push(attendeesList[i].value);
   }
 
   geocoder.geocode({'address': address}, function(results, status) {
