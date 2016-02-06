@@ -26,6 +26,8 @@ def parseDate(daterange):
 		startHour = '00'
 	if startAMPM == 'PM':
 		startHour = str(int(startHour)+12)
+	if startHour != '00' and len(startHour) == 1:
+		startHour = '0' + startHour
 
 	endDateMonth = daterange[1].strip().split()[0].split('/')[0]
 	endDateDay = daterange[1].strip().split()[0].split('/')[1]
@@ -38,6 +40,8 @@ def parseDate(daterange):
 		endHour = '00'
 	if endAMPM == 'PM':
 		endHour = str(int(endHour)+12)
+	if endHour != '00' and len(endHour) == 1:
+		endHour = '0' + endHour
 
 	startDateTime = ("{startDateYear}-{startDateMonth}-{startDateDay}"
                      "{startHour}T{startMinute}"
@@ -147,12 +151,6 @@ def getUsernames(request):
 		'testdata': 'bqiuwashere',
 	}
 	return JsonResponse(context)
-
-# def spinhello(x=1):
-# 	x += 1
-# 	while True:
-# 		print 'Hello from spinhello... with x = {x}'.format(x=x)
-# 		time.sleep(1)
 
 @login_required
 def home(request):

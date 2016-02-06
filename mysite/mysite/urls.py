@@ -38,7 +38,7 @@ def hasStarted(startDT):
 	currMinute = currDT.time().minute
 
 	return currYear >= startYear and currMonth >= startMonth and currDay >= startDay and \
-	       currHour >= startHour and currMinute >= startHour
+	       ((currHour > startHour) or (currHour == startHour and currMinute >= startMinute))
 
 def checkLateAttendees(x=1):
 	while True:
@@ -51,6 +51,7 @@ def checkLateAttendees(x=1):
 				continue
 			# Meeting hasn't started yet
 			if not hasStarted(meeting.startDT):
+				print 'Meeting {meetingName} not started'.format(meetingName=meeting.meetingName)
 				continue
 			checkedinAttendees = meeting.checkedinAttendees.all()
 			for attendee in meeting.acceptedAttendees.all():
