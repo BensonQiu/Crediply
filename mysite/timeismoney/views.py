@@ -78,32 +78,44 @@ def attend(request, id):
 def createMeeting(request):
 	context = {}
 
-	if request.method == 'GET':
-		return render(request, 'timeismoney/createMeeting.html', context)
+	# if request.method == 'GET':
+	# 	return render(request, 'timeismoney/createMeeting.html', context)
 
 	# TODO: Create a form to validate input
-	form = request.POST
+	# form = request.POST
+	form = request.GET
 
-	(startDT, endDT) = parseDate(form['daterange'])
+	(startDT, endDT) = parseDate(form['date'])
 
 	# print startDT, endDT
 	newMeeting = Meeting(
 		meetingName=form['meetingName'],
 		startDT=startDT,
 		endDT=endDT,
-		location=form['location'],
+		location=form['address'],
+		latitude=form['lat'],
+		longitude=form['lng']
 	)
 	newMeeting.save()
 	# Meeting creator is automatically attending
 	newMeeting.acceptedAttendees.add(request.user)
 	newMeeting.save()
 
-	for attendee in form.getlist('attendees'):
+	for attendee in form.getlist('attendees[]'):
 		user = User.objects.filter(username=attendee)[0]
 		newMeeting.pendingAttendees.add(user)
 		newMeeting.save()
 
 	return redirect(reverse('home'))
+
+@login_required
+def fooAjax(request):
+
+	print ('yolo')
+	import ipdb; ipdb.set_trace()
+	print ('foobar')
+
+	return JsonResponse({})
 
 @login_required
 def checkIn(request):

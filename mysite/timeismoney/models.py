@@ -11,6 +11,8 @@ class Meeting(models.Model):
 	pendingAttendees = models.ManyToManyField(User, related_name='%(class)s_pending')
 	acceptedAttendees = models.ManyToManyField(User, related_name='%(class)s_accepted')
 	checkedinAttendees = models.ManyToManyField(User, related_name='%(class)s_checkedin')
+	latitude = models.FloatField(default=0.0)
+	longitude = models.FloatField(default=0.0)
 
 	def natural_key(self):
 		return (self.pendingAttendees, self.acceptedAttendees, self.checkedinAttendees)
