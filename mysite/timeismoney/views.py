@@ -82,7 +82,7 @@ def createMeeting(request):
 
 	(startDT, endDT) = parseDate(form['daterange'])
 
-	print startDT, endDT
+	# print startDT, endDT
 	newMeeting = Meeting(
 		meetingName=form['meetingName'],
 		startDT=startDT,
@@ -104,6 +104,12 @@ def createMeeting(request):
 @login_required
 def checkIn(request):
 	context = {}
+
+	if request.method == 'GET':
+		return render(request, 'timeismoney/checkIn.html', context)
+
+	context['userLat'] = request.POST['checkin-lat']
+	context['userLng'] = request.POST['checkin-lng']
 	context['meetings'] = Meeting.objects.all()
 
 	return render(request, 'timeismoney/checkIn.html', context)

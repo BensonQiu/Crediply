@@ -4233,3 +4233,47 @@ button.attend {
 .icon {
   float: right;
 }
+
+#circle {
+  text-align: center;
+  width: 26em;
+  height: 26em;
+  -webkit-border-radius: 13em;
+  -moz-border-radius: 13em;
+  border-radius: 13em;
+  position: relative;
+  top: 20%;
+  left: 35%;
+  background: lightgreen;
+}
+
+.custom-large {
+  font-size: 6em;
+  text-align: bottom;
+  height: 50%;
+  position: relative;
+  top: 25%;
+}
+
+.custom-medium {
+  font-size: 2em;
+  text-align: bottom;
+  position: relative;
+}
+
+.custom-logo-medium {
+  font-size: 1.5em;
+  text-align: center;
+  position: relative;
+  margin-right: 5px;
+}
+
+.custom-checkin {
+  margin-top: 5em;
+  height: 8em;
+}
+
+.custom-checkin-button {
+  height: inherit;
+  position: relative;
+}
