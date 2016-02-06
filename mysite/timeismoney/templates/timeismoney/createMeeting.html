@@ -1,0 +1,18 @@
+{% extends "timeismoney/baseNetwork.html" %}
+
+{% block static-files %}
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+{% endblock %}
+
+{% block content %}
+<form class="form col-md-12 center-block" method="post" action="{% url 'createMeeting' %}">
+  <div class="form-group">
+    <input type="text" class="form-control input-lg text-fields" placeholder="Meeting Name" name="meetingName">
+    <input type="text" class="form-control input-lg text-fields" placeholder="Time" name="time">
+    <input type="text" class="form-control input-lg text-fields" placeholder="Location" name="location">
+    <input type="text" class="form-control input-lg text-fields" placeholder="Attendees" name="attendees">
+    <button class="btn btn-primary btn-lg btn-block text-fields" value="Create Meeting">Create Meeting</button>
+  </div>
+  {% csrf_token %}
+</form>
+{% endblock %}
