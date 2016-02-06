@@ -200,7 +200,7 @@
 
                     </div>
 
-                      <div>
+                      <!-- <div>
                             <form class="form" method="post" action="{% url 'createMeeting' %}">
                               <fieldset class="form-group">
                                 <label for="title">Meeting Name</label>
@@ -221,7 +221,47 @@
                               <button class="btn btn-primary btn-lg btn-block text-fields" value="Create Meeting">Create Meeting</button>
                             {% csrf_token %}
                             </form>
+                        </div> -->
+                        <button type="button" class="btn btn-primary btn-lg btn-block text-fields" data-toggle="modal" data-target="#myModal">Create Meeting</button>
+                      <!-- Modal -->
+                      <div class="modal fade" id="myModal" role="dialog">
+                        <div class="modal-dialog">
+                        
+                          <!-- Modal content-->
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h4 class="modal-title">Create Meeting</h4>
+                            </div>
+                            <div class="modal-body">
+                              <form class="form" method="post" action="{% url 'createMeeting' %}">
+                                <fieldset class="form-group">
+                                  <label for="title">Meeting Name</label>
+                                  <input type="text" class="form-control" name="meetingName" id="title" placeholder="Title">
+                                </fieldset>
+                                <fieldset class="form-group">
+                                  <label for="date">Date and Time</label>
+                                  <input type="text"class="form-control" id="date" name="daterange" />
+                                </fieldset>
+                                <fieldset class="form-group">
+                                  <label for="location">Location</label>
+                                  <input type="text" name="location" class="form-control" id="location" placeholder="Ex. GHC 4401">
+                                </fieldset>
+                                <fieldset class="form-group">
+                                  <label for="invite">Invite others</label><br>
+                                  <select style="width: 200px" class="people-search-multiple" name="attendees" multiple="multiple"></select>
+                                </fieldset>
+                                <button class="btn btn-primary btn-lg btn-block text-fields" value="Create Meeting">Create Meeting</button>
+                              {% csrf_token %}
+                              </form>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                          </div>
+                          
                         </div>
+                      </div>
 
                 </section>
                 <div class="footer-main">
