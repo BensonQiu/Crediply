@@ -1,0 +1,17 @@
+body {
+	padding-top: 70px;
+}
+
+.tab {
+	margin-left: 40px;
+}
+
+#text_feed {
+	height: 204px;
+	overflow: auto;
+}
+
+#map-canvas {
+	height: 335px;
+	overflow: hidden;
+}

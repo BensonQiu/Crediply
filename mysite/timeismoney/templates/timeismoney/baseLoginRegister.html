@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+    <meta name="generator" content="Bootply" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    {% load staticfiles %}
+      <link href="{% static 'timeismoney/css/bootstrapLoginRegister.min.css' %}" rel="stylesheet">
+		  <link href="{% static 'timeismoney/css/stylesLoginRegister.css' %}" rel="stylesheet">
+      <title>Welcome to TimeIsMoney</title>
+	</head>
+
+  <body>
+    {% if form.errors %}
+    {% block error-checks %}
+    {% endblock %}
+    {% endif %}
+
+    <div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-header">
+      <h1 class="text-center">{% block title %} TimeIsMoney {% endblock %}</h1>
+    </div>
+
+    <div class="modal-body">
+      {% block input-fields %}
+      {% endblock %}
+    </div>
+    <div class="modal-footer">
+      <div class="col-md-12">
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+    <!-- script references -->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+		<script src="{% static 'timeismoney/js/bootstrapLoginRegister.min.js' %}"></script>
+	</body>
+</html>

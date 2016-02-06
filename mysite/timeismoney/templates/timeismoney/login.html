@@ -1,0 +1,24 @@
+{% extends "timeismoney/baseLoginRegister.html" %}
+
+{% block title %}
+Welcome to TimeIsMoney
+{% endblock %}
+
+{% block error-checks %}
+<p style="color:red">
+  Incorrect user name and password.
+</p>
+{% endblock %}
+
+{% block input-fields %}
+<form class="form col-md-12 center-block" method="post" action="{% url 'login' %}">
+  <div class="form-group">
+    <input type="text" class="form-control input-lg text-fields" placeholder="Username" name="username">
+    <input type="password" class="form-control input-lg text-fields" placeholder="Password" name="password">
+    <button class="btn btn-primary btn-lg btn-block text-fields" value="Login">Login</button>
+    <span class="pull-right"><a href="{% url 'register' %}">Register</a></span><span>
+  </div>
+  <input type="hidden" name="next" value="{{ next }}" />
+  {% csrf_token %}
+</form>
+{% endblock %}

@@ -1,0 +1,4 @@
+/* Pad the top of the page to leave space for the navbar */
+body {
+	padding-top: 70px;
+}

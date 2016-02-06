@@ -1,0 +1,26 @@
+{% extends "timeismoney/baseLoginRegister.html" %}
+
+{% block title %}
+Register for TimeIsMoney
+{% endblock %}
+
+{% block error-checks %}
+{{form.non_field_errors}}
+{{form.errors}}
+{% endblock %}
+
+{% block input-fields %}
+<form class="form col-md-12 center-block" method="post" action="{% url 'register' %}">
+  <div class="form-group">
+    <input type="text" class="form-control input-lg text-fields" placeholder="First Name" name="first_name">
+    <input type="text" class="form-control input-lg text-fields" placeholder="Last Name" name="last_name">
+    <input type="text" class="form-control input-lg text-fields" placeholder="Email" name="email">
+    <input type="text" class="form-control input-lg text-fields" placeholder="Username" name="username">
+    <input type="password" class="form-control input-lg text-fields" placeholder="Password" name="password1">
+    <input type="password" class="form-control input-lg text-fields" placeholder="Confirm Password" name="password2">
+    <button class="btn btn-primary btn-lg btn-block text-fields" value="Register">Register</button>
+    <span class="pull-right"><a href="{% url 'login' %}">Back to Login Page</a></span><span>
+  </div>
+  {% csrf_token %}
+</form>
+{% endblock %}
