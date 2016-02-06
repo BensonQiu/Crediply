@@ -1,7 +1,5 @@
 import datetime
 
-from timeismoney.models import *
-
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -9,6 +7,8 @@ from django.core.urlresolvers import reverse
 from django.db import transaction
 from django.http import HttpResponse, Http404, JsonResponse
 from django.shortcuts import render, redirect
+
+from timeismoney.models import *
 
 def parseDate(daterange):
 	# Convert '02/06/2016 12:00 AM - 02/06/2016 11:59 PM'
@@ -141,6 +141,12 @@ def getUsernames(request):
 		'testdata': 'bqiuwashere',
 	}
 	return JsonResponse(context)
+
+# def spinhello(x=1):
+# 	x += 1
+# 	while True:
+# 		print 'Hello from spinhello... with x = {x}'.format(x=x)
+# 		time.sleep(1)
 
 @login_required
 def home(request):

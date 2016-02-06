@@ -10,7 +10,7 @@ class Meeting(models.Model):
 	location = models.CharField(max_length=100)
 	pendingAttendees = models.ManyToManyField(User, related_name='%(class)s_pending')
 	acceptedAttendees = models.ManyToManyField(User, related_name='%(class)s_accepted')
+	checkedinAttendees = models.ManyToManyField(User, related_name='%(class)s_checkedin')
 
 	def natural_key(self):
-		return (self.pendingAttendees, self.acceptedAttendees)
-
+		return (self.pendingAttendees, self.acceptedAttendees, self.checkedinAttendees)
