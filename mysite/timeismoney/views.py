@@ -109,15 +109,6 @@ def createMeeting(request):
 	return redirect(reverse('home'))
 
 @login_required
-def fooAjax(request):
-
-	print ('yolo')
-	import ipdb; ipdb.set_trace()
-	print ('foobar')
-
-	return JsonResponse({})
-
-@login_required
 def checkIn(request):
 	context = {}
 

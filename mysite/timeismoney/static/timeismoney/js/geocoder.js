@@ -7,23 +7,6 @@ function initMap() {
   });
 }
 
-// function geocodeAddress(geocoder) {
-//   var address = document.getElementById('address').value;
-//   geocoder.geocode({'address': address}, function(results, status) {
-//     // if (status === google.maps.GeocoderStatus.OK) {
-//       // resultsMap.setCenter(results[0].geometry.location);
-//       // var marker = new google.maps.Marker({
-//         // map: resultsMap,
-//         // position: results[0].geometry.location
-//       // });
-//     // } else {
-//       // alert('Geocode was not successful for the following reason: ' + status);
-//     // }
-//     console.log(results[0].geometry.location.lat());
-//     console.log(results[0].geometry.location.lng());
-//   });
-// }
-
 function geocodeAddress() {
   var geocoder = new google.maps.Geocoder();
 
@@ -59,16 +42,6 @@ function geocodeAddress() {
           attendees: attendees,
         },
         dataType: "json",
-        async: false}).done(function(response) {
-          alert('made a fooAjax call')
-          // response.meetings.forEach(function(meeting) {
-          //   var currentEvent = {
-          //     title: meeting.meetingName,
-          //     start: moment(meeting.startDT),
-          //                   end: moment(meeting.endDT)
-          //   }
-          //   events.push(currentEvent)
-          // })
-        })
+        async: false}).done(function(response) {})
   });
 }
