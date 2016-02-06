@@ -113,6 +113,7 @@ def createMeeting(request):
 
     return redirect(reverse('home'))
 
+
 @login_required
 def checkIn(request):
     context = {}
@@ -138,6 +139,15 @@ def checkIn(request):
         print('Within 100 meters: ' + ("%r" % halfKilometerDifference((tLat, tLon), (uLat, uLon))))
 
         return render(request, 'timeismoney/checkIn.html', context)
+
+@login_required
+def summary(request):
+	context = {}
+
+	if request.method == 'GET':
+		return render(request, 'timeismoney/summary.html', context)
+	context['meetings'] = Meeting.objects.all()
+	return render(request, 'timeismoney/summary.html', context)
 
 @login_required
 def getData(request):
@@ -193,7 +203,6 @@ def home(request):
 
 @transaction.atomic
 def register(request):
-
     # If this is a GET request, display the registration form.
     if request.method == 'GET':
         return render(request, 'timeismoney/register.html', {})
@@ -252,3 +261,42 @@ def halfKilometerDifference(origin, destination):
     km = 6367 * c
 
     return (km < 0.500)
+	# If this is a GET request, display the registration form.
+	if request.method == 'GET':
+		return render(request, 'timeismoney/register.html', {})
+
+	# TODO: Create a form to validate input
+	form = request.POST
+	# TODO: Do form validation here.
+
+	newUser = User.objects.create_user(
+		username=form['username'],
+		password=form['password1'],
+		first_name=form['first_name'],
+		last_name=form['last_name'],
+		email=form['email'], # This is actually CapitalOne Account ID.
+		                     # If this wasn't a hackathon we should probably
+		                     # just extend User to add additional fields
+	)
+
+	return render(request, 'timeismoney/login.html', {})
+
+def withinStart(startDT):
+	startYear = int(startDT[0:4])
+	startMonth = int(startDT[5].strip('0') + startDT[6])
+	startDay = int(startDT[8].strip('0') + startDT[9])
+	startHour = int(startDT[10].strip('0') + startDT[11])
+	startMinute = int(startDT[13].strip('0') + startDT[14])
+
+	gmt = pytz.timezone('GMT')
+	eastern = pytz.timezone('US/Eastern')
+	dategmt = gmt.localize(datetime.datetime.now() - timedelta(mins=30))
+	currDT = dategmt.astimezone(eastern)
+	currYear = currDT.year
+	currMonth = currDT.month
+	currDay = currDT.day
+	currHour = currDT.time().hour
+	currMinute = currDT.time().minute
+
+	return currYear >= startYear and currMonth >= startMonth and currDay >= startDay and \
+	       currHour >= startHour and currMinute >= startHour

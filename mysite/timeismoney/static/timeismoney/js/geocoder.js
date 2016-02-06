@@ -13,11 +13,11 @@ function geocodeAddress() {
   var meetingName = document.getElementById('meetingName').value;
   var date = document.getElementById('date').value;
   var address = document.getElementById('address').value;
-  var attendeesList = document.getElementsByClassName('people-search-multiple');
+  var attendeesList = document.querySelector('select').selectedOptions;
   var attendees = []
-  for(i = 0;i < attendeesList[0]['length']; i++) {
-      console.log(attendeesList[0][i].value);
-      attendees.push(attendeesList[0][i].value);
+  for(i = 0; i < attendeesList.length; i++) {
+      console.log(attendeesList[0].value);
+      attendees.push(attendeesList[0].value);
   }
 
   geocoder.geocode({'address': address}, function(results, status) {
@@ -43,6 +43,7 @@ function geocodeAddress() {
         },
         dataType: "json",
         async: false}).done(function(response) {
+          alert('yolo');
           location.reload()
         })
   });
