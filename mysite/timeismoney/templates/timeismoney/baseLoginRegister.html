@@ -8,32 +8,119 @@
     {% load staticfiles %}
       <link href="{% static 'timeismoney/css/bootstrapLoginRegister.min.css' %}" rel="stylesheet">
 		  <link href="{% static 'timeismoney/css/stylesLoginRegister.css' %}" rel="stylesheet">
+      <link href="{% static 'timeismoney/css/landing-page.css' %}" rel="stylesheet">
+      <link href="{% static 'timeismoney/fonts/font-awesome.min.css' %}" rel="stylesheet">
+      <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" 
       <title>Welcome to TimeIsMoney</title>
 	</head>
 
   <body>
-    {% if form.errors %}
-    {% block error-checks %}
-    {% endblock %}
-    {% endif %}
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+        <div class="container topnav">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand topnav" href="#">Time is Money</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#about">About</a>
+                    </li>
+                    <li>
+                        <a href="#services">Login</a>
+                    </li>
+                    <li>
+                        <a href="#services">Register</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
 
-    <div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
-    <div class="modal-content">
-    <div class="modal-header">
-      <h1 class="text-center">{% block title %} TimeIsMoney {% endblock %}</h1>
-    </div>
+    <!-- Header -->
+    <a name="about"></a>
+    <div class="intro-header">
+        <div class="container">
 
-    <div class="modal-body">
-      {% block input-fields %}
-      {% endblock %}
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="intro-message">
+                        <h1>Time is Money</h1>
+                        <h3>What if everyone showed up to a meeting on time. Everytime.</h3>
+                        <hr class="intro-divider">
+                        <ul class="list-inline intro-social-buttons">
+                            <li>
+                                <a href="https://github.com/BensonQiu/TimeIsMoney" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
     </div>
-    <div class="modal-footer">
-      <div class="col-md-12">
+    <!-- /.intro-header -->
+
+    <!-- Page Content -->
+
+  <a  name="services"></a>
+    <div class="content-section-a">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-sm-6">
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">Time is Money?</h2>
+                    <p class="lead">Everyone hates that one person who always shows up late. Time is Money is a web application designed to gamify the act of arriving on time.</p>
+                </div>
+                {% if form.errors %}
+                {% block error-checks %}  
+                {% endblock %}
+                {% endif %}
+                <div class="col-lg-5 col-lg-offset-2 col-sm-6 down">
+                    {% block input-fields %}
+                    {% endblock %}
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
     </div>
-    </div>
-    </div>
-    </div>
+    <!-- /.content-section-a -->
+
+    <div class="content-section-b">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">Powered by Capital One</h2>
+                    <p class="lead">We utilize Capital One's easy-to-use Accounts API to penalize those who show up late, while incentivizing those who arrive on time.</p>
+                </div>
+                <div class="col-lg-5 col-sm-pull-6  col-sm-6">
+                    <img class="img-responsive" src="{% static 'timeismoney/img/nessie.png' %}" alt="">
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
     </div>
 
     <!-- script references -->
