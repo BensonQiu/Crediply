@@ -4236,14 +4236,14 @@ button.attend {
 
 #circle {
   text-align: center;
-  width: 26em;
-  height: 26em;
-  -webkit-border-radius: 13em;
-  -moz-border-radius: 13em;
-  border-radius: 13em;
+  width: 30em;
+  height: 30em;
+  -webkit-border-radius: 15em;
+  -moz-border-radius: 15em;
+  border-radius: 15em;
   position: relative;
   top: 20%;
-  left: 35%;
+  left: 33%;
   background: lightgreen;
 }
 
