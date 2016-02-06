@@ -78,27 +78,30 @@ def attend(request, id):
 def createMeeting(request):
 	context = {}
 
-	if request.method == 'GET':
-		return render(request, 'timeismoney/createMeeting.html', context)
+	# if request.method == 'GET':
+	# 	return render(request, 'timeismoney/createMeeting.html', context)
 
 	# TODO: Create a form to validate input
-	form = request.POST
+	# form = request.POST
+	form = request.GET
 
-	(startDT, endDT) = parseDate(form['daterange'])
+	(startDT, endDT) = parseDate(form['date'])
 
 	# print startDT, endDT
 	newMeeting = Meeting(
 		meetingName=form['meetingName'],
 		startDT=startDT,
 		endDT=endDT,
-		location=form['location'],
+		location=form['address'],
+		latitude=form['lat'],
+		longitude=form['lng']
 	)
 	newMeeting.save()
 	# Meeting creator is automatically attending
 	newMeeting.acceptedAttendees.add(request.user)
 	newMeeting.save()
 
-	for attendee in form.getlist('attendees'):
+	for attendee in form.getlist('attendees[]'):
 		user = User.objects.filter(username=attendee)[0]
 		newMeeting.pendingAttendees.add(user)
 		newMeeting.save()
@@ -198,3 +201,23 @@ def register(request):
 	)
 
 	return render(request, 'timeismoney/login.html', {})
+
+def withinStart(startDT):
+	startYear = int(startDT[0:4])
+	startMonth = int(startDT[5].strip('0') + startDT[6])
+	startDay = int(startDT[8].strip('0') + startDT[9])
+	startHour = int(startDT[10].strip('0') + startDT[11])
+	startMinute = int(startDT[13].strip('0') + startDT[14])
+
+	gmt = pytz.timezone('GMT')
+	eastern = pytz.timezone('US/Eastern')
+	dategmt = gmt.localize(datetime.datetime.now() - timedelta(mins=30))
+	currDT = dategmt.astimezone(eastern)
+	currYear = currDT.year
+	currMonth = currDT.month
+	currDay = currDT.day
+	currHour = currDT.time().hour
+	currMinute = currDT.time().minute
+
+	return currYear >= startYear and currMonth >= startMonth and currDay >= startDay and \
+	       currHour >= startHour and currMinute >= startHour
