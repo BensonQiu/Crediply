@@ -5,10 +5,9 @@
 {% endblock %}
 
 {% block content %}
-<p>index/home</p>
-<p>index/home</p>
-<p>index/home</p>
-<p>index/home</p>
-<p>index/home</p>
+{% for m in meetings %}
+	<p> {{m.meetingName}}, {{m.dateAndTime}}, {{m.location}}, {{m.attendees}}</p>
+{% endfor %}
+
 {% csrf_token %}
 {% endblock %}
