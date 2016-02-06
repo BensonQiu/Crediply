@@ -37,11 +37,29 @@ def checkIn(request):
 	return render(request, 'timeismoney/checkIn.html', context)
 
 @login_required
+def getData(request):
+	meetings = list(Meeting.objects.all())
+	meetings_response = [
+		{
+			'meetingName': meeting.meetingName,
+			'dateAndTime': meeting.dateAndTime, # Sample format: 2016-02-1508T09
+			'location': meeting.location,
+		}
+		for meeting in meetings]
+
+	context = {
+		'success': True,
+		'meetings': meetings_response,
+		'testdata': 'bensonwashere'
+	}
+	return JsonResponse(context)
+
+@login_required
 def home(request):
 	context = {}
 	context['meetings'] = Meeting.objects.all()
 
-	#Get the current user's name 
+	#Get the current user's name
 	context['first_name'] = request.user.first_name
 	context['last_name'] = request.user.last_name
 

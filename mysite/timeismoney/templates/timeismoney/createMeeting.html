@@ -5,12 +5,38 @@
 {% endblock %}
 
 {% block content %}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+
 <form class="form col-md-12 center-block" method="post" action="{% url 'createMeeting' %}">
   <div class="form-group">
     <input type="text" class="form-control input-lg text-fields" placeholder="Meeting Name" name="meetingName">
     <input type="text" class="form-control input-lg text-fields" placeholder="Time" name="time">
     <input type="text" class="form-control input-lg text-fields" placeholder="Location" name="location">
     <input type="text" class="form-control input-lg text-fields" placeholder="Attendees" name="attendees">
+
+	<p id="datepairExample">
+	    <input type="text" placeholder="Date Start" class="date start" />
+	    <input type="text" placeholder="Time Start" class="time start" /> to
+	    <input type="text" placeholder="Time End" class="time end" />
+	    <input type="text" placeholder="Date End" class="da	<script type="text/javascript" src="{{ STATIC_URL}}js/datepair.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL}]js/jquery.datepair.js"></script>
+
+	<script>
+	    // initialize input widgets first
+	    $('#datepairExample .time').timepicker({
+	        'showDuration': true,
+	        'timeFormat': 'g:ia'
+	    });
+
+	    $('#datepairExample .date').datepicker({
+	        'format': 'yyyy-m-d',
+	        'autoclose': true
+	    });
+
+	    // initialize datepair
+	    $('#datepairExample').datepair();
+	</script>
+
     <button class="btn btn-primary btn-lg btn-block text-fields" value="Create Meeting">Create Meeting</button>
   </div>
   {% csrf_token %}
