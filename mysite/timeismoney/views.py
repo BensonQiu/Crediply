@@ -118,14 +118,24 @@ def checkIn(request):
     context = {}
 
     curMeeting = withinStart()
+    if curMeeting:
+        startDT = curMeeting.startDT
+        context = {
+            'first_name': request.user.first_name,
+            'last_name': request.user.last_name,
+            'curMeeting': curMeeting.meetingName,
+            'curMeetingLoc': curMeeting.location,
+            'curMeetingTime': startDT[10] + startDT[11] + ":" + startDT[13].strip('0') + startDT[14],
+        }
+    else:
+        context = {
+            'first_name': request.user.first_name,
+            'last_name': request.user.last_name,
+            'curMeeting': "",
+            'curMeetingLoc': "",
+            'curMeetingTime': "Nothing!",
+        }
     
-    context = {
-        'first_name': request.user.first_name,
-        'last_name': request.user.last_name,
-        'curMeeting': curMeeting.meetingName,
-        'curMeetingLoc': curMeeting.location,
-        'curMeetingTime': curMeeting.startDT
-    }
 
     if request.method == 'GET':
         return render(request, 'timeismoney/checkIn.html', context)
@@ -243,7 +253,6 @@ def withinStart():
         print('Looking at now {meetingName}'.format(meetingName=meeting.meetingName))
 
         if (convertedCurrDT > lowerDT) and (convertedCurrDT < upperDT):
-            print("YEAHHH!")
             return meeting
 
     return None
@@ -262,30 +271,3 @@ def halfKilometerDifference(origin, destination):
     km = 6367 * c
 
     return (km < 0.500)
-
-def withinStart():
-    for meeting in Meeting.objects.all():
-        startDT = meeting.startDT
-        startYear = int(startDT[0:4])
-        startMonth = int(startDT[5].strip('0') + startDT[6])
-        startDay = int(startDT[8].strip('0') + startDT[9])
-        startHour = int(startDT[10].strip('0') + startDT[11])
-        startMinute = int(startDT[13].strip('0') + startDT[14])
-
-        convertedStartDT = datetime.datetime(year=startYear, 
-                                             month=startMonth, 
-                                             day=startDay, 
-                                             hour=startHour, 
-                                             minute=startMinute)
-        lowerDT = convertedStartDT - datetime.timedelta(minutes=20)
-        upperDT = convertedStartDT + datetime.timedelta(minutes=20)
-        convertedCurrDT = datetime.datetime.now()
-
-        print('Looking at now {meetingName}'.format(meetingName=meeting.meetingName))
-        print('Looking at now {meetingName}'.format(meetingName=meeting.meetingName))
-
-        if (convertedCurrDT > lowerDT) and (convertedCurrDT < upperDT):
-            print("YEAHHH!")
-            return meeting
-
-    return None
