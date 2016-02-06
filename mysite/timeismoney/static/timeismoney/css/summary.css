@@ -1,0 +1,60 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+.animate {
+	top: 100px;
+	text-align: center;
+	-webkit-animation: moveUp 5s forwards;
+	position: relative;
+	-webkit-animation-delay: 5s; /* Chrome, Safari, Opera */
+    animation-delay: 5s;
+}
+
+@keyframes moveUp {
+    from {top: 100px;}
+    to {top: 0px;}
+
+}
+
+@keyframes waiting {
+    from {visibility: hidden;}
+    to {visibility: visible;}
+}
+
+p {
+	font-family: 'Montserrat', sans-serif;
+}
+
+p#good {
+	color: green;
+	font-size: 100px;
+}
+p#bad {
+	color: red;
+	font-size: 100px;
+}
+
+div.waiting {
+	text-align: center;
+	visibility: hidden;
+	-webkit-animation: waiting 5s forwards;
+	-webkit-animation-delay: 9s; /* Chrome, Safari, Opera */
+}
+
+.clock {
+	width: 300px;
+	height: 300px;
+}
+
+div.count {
+	text-align: center;
+	margin: 20px;
+	padding: 20px;
+}
+
+.msg {
+	font-size: 20px;
+}
+
+.number {
+	font-size: 150px;
+}

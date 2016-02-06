@@ -119,6 +119,15 @@ def checkIn(request):
 	return render(request, 'timeismoney/checkIn.html', context)
 
 @login_required
+def summary(request):
+	context = {}
+
+	if request.method == 'GET':
+		return render(request, 'timeismoney/summary.html', context)
+	context['meetings'] = Meeting.objects.all()
+	return render(request, 'timeismoney/summary.html', context)
+
+@login_required
 def getData(request):
 	meetings = list(Meeting.objects.all())
 	meetings_response = [
