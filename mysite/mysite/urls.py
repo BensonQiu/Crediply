@@ -67,4 +67,4 @@ def checkLateAttendees(x=1):
 t = threading.Thread(target=checkLateAttendees,
                      kwargs={'x': 5})
 t.setDaemon(True)
-t.start()
+# t.start()

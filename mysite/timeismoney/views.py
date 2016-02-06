@@ -87,7 +87,6 @@ def createMeeting(request):
 
 	(startDT, endDT) = parseDate(form['date'])
 
-	# print startDT, endDT
 	newMeeting = Meeting(
 		meetingName=form['meetingName'],
 		startDT=startDT,
@@ -192,12 +191,15 @@ def register(request):
 	# TODO: Create a form to validate input
 	form = request.POST
 	# TODO: Do form validation here.
+
 	newUser = User.objects.create_user(
 		username=form['username'],
 		password=form['password1'],
 		first_name=form['first_name'],
 		last_name=form['last_name'],
-		email=form['email'],
+		email=form['email'], # This is actually CapitalOne Account ID.
+		                     # If this wasn't a hackathon we should probably
+		                     # just extend User to add additional fields
 	)
 
 	return render(request, 'timeismoney/login.html', {})
