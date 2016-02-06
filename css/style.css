@@ -4212,3 +4212,24 @@ padding: 6px 10px;
   max-width: 900px;
   margin: 0 auto;
 }
+
+button.close {
+  margin-bottom: 10px;
+}
+
+ol#attendees {
+  padding: 20px;
+  padding-top: 0px;
+}
+
+p.description-sm {
+  font-size: 12px;
+}
+
+button.attend {
+  float: right;
+}
+
+.icon {
+  float: right;
+}
