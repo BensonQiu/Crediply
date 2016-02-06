@@ -42,6 +42,8 @@ function geocodeAddress() {
           attendees: attendees,
         },
         dataType: "json",
-        async: false}).done(function(response) {})
+        async: false}).done(function(response) {
+          location.reload()
+        })
   });
 }
