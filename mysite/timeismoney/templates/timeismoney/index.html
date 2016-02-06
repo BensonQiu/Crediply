@@ -22,12 +22,15 @@
     <!-- fullCalendar -->
     <!-- <link href="css/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css" /> -->
     <!-- Daterange picker -->
-    <link href="{% static 'timeismoney/css/daterangepicker/daterangepicker-bs3.css' %}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
     <!-- iCheck for checkboxes and radio inputs -->
     <link href="{% static 'timeismoney/css/iCheck/all.css' %}" rel="stylesheet" type="text/css" />
     <!-- bootstrap wysihtml5 - text editor -->
     <!-- <link href="css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" /> -->
     <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+
+    <!-- Select2 for bootstrap-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/css/select2.min.css" rel="stylesheet" />
 
     <!-- Calendar CSS imports -->
     <link href="{% static 'timeismoney/css/fullcalendar/fullcalendar.css' %}" rel='stylesheet' />
@@ -274,6 +277,11 @@
 
         <!-- Moment js -->
         <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js'></script>
+
+        <!-- daterangepicker -->
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+        <!-- Select2.js-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/js/select2.min.js"></script>
 
         <!-- calendar -->
         <script src="{% static 'timeismoney/js/plugins/fullcalendar/fullcalendar.js' %}" type="text/javascript"></script>
