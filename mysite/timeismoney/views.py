@@ -10,6 +10,59 @@ from django.db import transaction
 from django.http import HttpResponse, Http404, JsonResponse
 from django.shortcuts import render, redirect
 
+def parseDate(daterange):
+	# Convert '02/06/2016 12:00 AM - 02/06/2016 11:59 PM'
+	# to (2016-02-0600T00, 2016-02-06023T59)
+	daterange = daterange.split('-')
+
+	startDateMonth = daterange[0].strip().split()[0].split('/')[0]
+	startDateDay = daterange[0].strip().split()[0].split('/')[1]
+	startDateYear = daterange[0].strip().split()[0].split('/')[2]
+	startTime = daterange[0].strip().split()[1]
+	startAMPM = daterange[0].strip().split()[2]
+	startHour = startTime.split(':')[0]
+	startMinute = startTime.split(':')[1]
+	if startHour == '12' and startAMPM == 'AM':
+		startHour = '00'
+	if startAMPM == 'PM':
+		startHour = str(int(startHour)+12)
+
+	endDateMonth = daterange[1].strip().split()[0].split('/')[0]
+	endDateDay = daterange[1].strip().split()[0].split('/')[1]
+	endDateYear = daterange[1].strip().split()[0].split('/')[2]
+	endTime = daterange[1].strip().split()[1]
+	endAMPM = daterange[1].strip().split()[2]
+	endHour = endTime.split(':')[0]
+	endMinute = endTime.split(':')[1]
+	if endHour == '12' and endAMPM == 'AM':
+		endHour = '00'
+	if endAMPM == 'PM':
+		endHour = str(int(endHour)+12)
+
+
+	startDateTime = ("{startDateYear}-{startDateMonth}-{startDateDay}"
+                     "{startHour}T{startMinute}"
+		            ).format(
+		            	startDateYear=startDateYear,
+		            	startDateMonth=startDateMonth,
+		            	startDateDay=startDateDay,
+		            	startHour=startHour,
+		            	startMinute=startMinute,
+		            )
+
+	endDateTime = ("{endDateYear}-{endDateMonth}-{endDateDay}"
+                   "{endHour}T{endMinute}"
+		          ).format(
+		            	endDateYear=endDateYear,
+		            	endDateMonth=endDateMonth,
+		            	endDateDay=endDateDay,
+		            	endHour=endHour,
+		            	endMinute=endMinute,
+		            )
+	return (startDateTime, endDateTime)
+
+#	u'02/06/2016 12:00 AM - 02/06/2016 11:59 PM'
+
 @login_required
 def createMeeting(request):
 	context = {}
@@ -20,9 +73,13 @@ def createMeeting(request):
 	# TODO: Create a form to validate input
 	form = request.POST
 
+	(startDT, endDT) = parseDate(form['daterange'])
+
+	print startDT, endDT
 	newMeeting = Meeting(
 		meetingName=form['meetingName'],
-		dateAndTime=datetime.datetime.utcnow(), # TODO: Get date and time from form.
+		startDT=startDT,
+		endDT=endDT,
 		location=form['location'],
 	)
 	newMeeting.save()
@@ -47,7 +104,8 @@ def getData(request):
 	meetings_response = [
 		{
 			'meetingName': meeting.meetingName,
-			'dateAndTime': meeting.dateAndTime, # Sample format: 2016-02-1508T09
+			'startDT': meeting.startDT,
+			'endDT': meeting.endDT,
 			'location': meeting.location,
 		}
 		for meeting in meetings]

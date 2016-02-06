@@ -5,7 +5,8 @@ from django.db import models
 
 class Meeting(models.Model):
 	meetingName = models.CharField(max_length=100)
-	dateAndTime = models.DateTimeField()
+	startDT = models.CharField(max_length=50, default='')
+	endDT = models.CharField(max_length=50, default='')
 	location = models.CharField(max_length=100)
 	pendingAttendees = models.ManyToManyField(User, related_name='%(class)s_pending')
 	acceptedAttendees = models.ManyToManyField(User, related_name='%(class)s_accepted')

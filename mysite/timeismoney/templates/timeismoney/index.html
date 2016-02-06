@@ -291,7 +291,8 @@
 					response.meetings.forEach(function(meeting) {
 						var currentEvent = {
 							title: meeting.meetingName,
-							start: moment(meeting.dateAndTime)
+							start: moment(meeting.startDT),
+                            end: moment(meeting.endDT)
 						}
 						events.push(currentEvent)
 					})
