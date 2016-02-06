@@ -31,6 +31,12 @@ def createMeeting(request):
 	return redirect(reverse('home'))
 
 @login_required
+def checkIn(request):
+	context = {}
+
+	return render(request, 'timeismoney/checkIn.html', context)
+
+@login_required
 def home(request):
 	context = {}
 	context['meetings'] = Meeting.objects.all()
