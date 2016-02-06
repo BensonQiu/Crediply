@@ -28,7 +28,7 @@
     <!-- bootstrap wysihtml5 - text editor -->
     <!-- <link href="css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" /> -->
     <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
-    
+
     <!-- Calendar CSS imports -->
     <link href="{% static 'timeismoney/css/fullcalendar/fullcalendar.css' %}" rel='stylesheet' />
     <link href="{% static 'timeismoney/css/fullcalendar/fullcalendar.print.css' %}" rel='stylesheet' media='print' />
@@ -77,7 +77,7 @@
                                 <li>
                                     <!-- inner menu: contains the actual data
                                     <ul class="menu">
-                                        <li><!-- start message 
+                                        <li><!-- start message
                                             <a href="#">
                                                 <div class="pull-left">
                                                     <img src="img/26115.jpg" class="img-circle" alt="User Image"/>
@@ -88,7 +88,7 @@
                                                 <p>Why not buy a new awesome theme?</p>
                                                 <small class="pull-right"><i class="fa fa-clock-o"></i> 5 mins</small>
                                             </a>
-                                        </li><!-- end message 
+                                        </li><!-- end message
                                         <li>
                                             <a href="#">
                                                 <div class="pull-left">
@@ -150,7 +150,7 @@
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-user"></i>
-                                <span>Pratik Prakash<i class="caret"></i></span> 
+                                <span>Pratik Prakash<i class="caret"></i></span>
                             </a>
                             <ul class="dropdown-menu dropdown-custom dropdown-menu-right">
                                 <li class="dropdown-header text-center">Account</li>
@@ -168,7 +168,7 @@
                                         "badge pull-right">11</span> FAQ</a>
                                 </li> -->
                                         <li>
-                                            <a href="#"><i class="fa fa-ban fa-fw pull-right"></i> Logout</a>
+                                            <a href="{% url 'logout' %}"><i class="fa fa-ban fa-fw pull-right"></i> Logout</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -192,7 +192,7 @@
                                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                                 </div>
                             </div>
-                            <!-- <!-- search form 
+                            <!-- <!-- search form
                             <form action="#" method="get" class="sidebar-form">
                                 <div class="input-group">
                                     <input type="text" name="q" class="form-control" placeholder="Search..."/>
@@ -215,7 +215,7 @@
                                     </a>
                                 </li>
 
-                                <li>    
+                                <li>
                                     <a href="#">
                                         <i class="fa fa-globe"></i> <span>Check In</span>
                                     </a>
@@ -370,9 +370,9 @@
                                       <th>#</th>
                                       <th>Project</th>
                                       <th>Manager</th>
-                                      <!-- <th>Client</th> 
+                                      <!-- <th>Client</th>
                                       <th>Deadline</th>
-                                      <!-- <th>Price</th> 
+                                      <!-- <th>Price</th>
                                       <th>Status</th>
                                       <th>Progress</th>
                                   </tr>
@@ -382,9 +382,9 @@
                                   <td>1</td>
                                   <td>Facebook</td>
                                   <td>Mark</td>
-                                  <!-- <td>Steve</td> 
+                                  <!-- <td>Steve</td>
                                   <td>10/10/2014</td>
-                                  <!-- <td>$1500</td> 
+                                  <!-- <td>$1500</td>
                                   <td><span class="label label-danger">in progress</span></td>
                                   <td><span class="badge badge-info">50%</span></td>
                               </tr>
@@ -392,9 +392,9 @@
                                   <td>2</td>
                                   <td>Twitter</td>
                                   <td>Evan</td>
-                                  <!-- <td>Darren</td> 
+                                  <!-- <td>Darren</td>
                                   <td>10/8/2014</td>
-                                  <!-- <td>$1500</td> 
+                                  <!-- <td>$1500</td>
                                   <td><span class="label label-success">completed</span></td>
                                   <td><span class="badge badge-success">100%</span></td>
                               </tr>
@@ -402,9 +402,9 @@
                                   <td>3</td>
                                   <td>Google</td>
                                   <td>Larry</td>
-                                  <!-- <td>Nick</td> 
+                                  <!-- <td>Nick</td>
                                   <td>10/12/2014</td>
-                                  <!-- <td>$2000</td> 
+                                  <!-- <td>$2000</td>
                                   <td><span class="label label-warning">in progress</span></td>
                                   <td><span class="badge badge-warning">75%</span></td>
                               </tr>
@@ -412,9 +412,9 @@
                                   <td>4</td>
                                   <td>LinkedIn</td>
                                   <td>Allen</td>
-                                  <!-- <td>Rock</td> 
+                                  <!-- <td>Rock</td>
                                   <td>10/01/2015</td>
-                                  <!-- <td>$2000</td> 
+                                  <!-- <td>$2000</td>
                                   <td><span class="label label-info">in progress</span></td>
                                   <td><span class="badge badge-info">65%</span></td>
                               </tr>
@@ -422,7 +422,7 @@
                                   <td>5</td>
                                   <td>Tumblr</td>
                                   <td>David</td>
-                                  <!-- <td>HHH</td> 
+                                  <!-- <td>HHH</td>
                                   <td>01/11/2014</td>
                                   <!-- <td>$2000</td>
                                   <td><span class="label label-warning">in progress</span></td>
@@ -432,9 +432,9 @@
                                   <td>6</td>
                                   <td>Tesla</td>
                                   <td>Musk</td>
-                                  <!-- <td>HHH</td> 
+                                  <!-- <td>HHH</td>
                                   <td>01/11/2014</td>
-                                  <!-- <td>$2000</td> 
+                                  <!-- <td>$2000</td>
                                   <td><span class="label label-info">in progress</span></td>
                                   <td><span class="badge badge-success">95%</span></td>
                               </tr>
@@ -442,15 +442,15 @@
                                   <td>7</td>
                                   <td>Ghost</td>
                                   <td>XXX</td>
-                                  <!-- <td>HHH</td> 
+                                  <!-- <td>HHH</td>
                                   <td>01/11/2014</td>
-                                  <!-- <td>$2000</td> 
+                                  <!-- <td>$2000</td>
                                   <td><span class="label label-info">in progress</span></td>
                                   <td><span class="badge badge-success">95%</span></td>
                               </tr>
                           </tbody>
                       </table>
-                  </div> 
+                  </div>
               </section>
 
 
@@ -557,7 +557,7 @@
                                     </li>
                                 </ul>
                                 <div class="panel-footer bg-white">
-                                    <!-- <span class="pull-right badge badge-info">32</span> 
+                                    <!-- <span class="pull-right badge badge-info">32</span>
                                     <button class="btn btn-primary btn-addon btn-sm">
                                         <i class="fa fa-plus"></i>
                                         Add Teammate
@@ -577,9 +577,9 @@
                                   <ul class="task-list">
                                       <li>
                                           <div class="task-checkbox">
-                                              <!-- <input type="checkbox" class="list-child" value=""  /> 
+                                              <!-- <input type="checkbox" class="list-child" value=""  />
                                               <input type="checkbox" class="flat-grey list-child"/>
-                                              <!-- <input type="checkbox" class="square-grey"/> 
+                                              <!-- <input type="checkbox" class="square-grey"/>
                                           </div>
                                           <div class="task-title">
                                               <span class="task-title-sp">Director is Modern Dashboard</span>
@@ -608,7 +608,7 @@
                                       </li>
                                       <li>
                                           <div class="task-checkbox">
-                                              <!-- <input type="checkbox" class="list-child" value=""  /> 
+                                              <!-- <input type="checkbox" class="list-child" value=""  />
                                               <input type="checkbox" class="flat-grey"/>
                                           </div>
                                           <div class="task-title">
@@ -623,7 +623,7 @@
                                       </li>
                                       <li>
                                           <div class="task-checkbox">
-                                              <!-- <input type="checkbox" class="list-child" value=""  /> 
+                                              <!-- <input type="checkbox" class="list-child" value=""  />
                                               <input type="checkbox" class="flat-grey"/>
                                           </div>
                                           <div class="task-title">
@@ -638,7 +638,7 @@
                                       </li>
                                       <li>
                                           <div class="task-checkbox">
-                                              <!-- <input type="checkbox" class="list-child" value=""  /> 
+                                              <!-- <input type="checkbox" class="list-child" value=""  />
                                               <input type="checkbox" class="flat-grey"/>
                                           </div>
                                           <div class="task-title">
@@ -653,7 +653,7 @@
                                       </li>
                                       <li>
                                           <div class="task-checkbox">
-                                              <!-- <input type="checkbox" class="list-child" value=""  /> 
+                                              <!-- <input type="checkbox" class="list-child" value=""  />
                                               <input type="checkbox" class="flat-grey"/>
                                           </div>
                                           <div class="task-title">
@@ -668,7 +668,7 @@
                                       </li>
                                       <li>
                                           <div class="task-checkbox">
-                                              <!-- <input type="checkbox" class="list-child" value=""  /> 
+                                              <!-- <input type="checkbox" class="list-child" value=""  />
                                               <input type="checkbox" class="flat-grey"/>
                                           </div>
                                           <div class="task-title">
@@ -722,7 +722,7 @@
         <script src="{% static 'timeismoney/js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>-->
         <!-- iCheck -->
         <script src="{% static 'timeismoney/js/plugins/iCheck/icheck.min.js' %}" type="text/javascript"></script>
-        
+
         <!-- Moment js -->
         <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js'></script>
 
